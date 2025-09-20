@@ -1,7 +1,6 @@
 import os, shutil, tarfile, urllib.request
 import random
-from typing import Union, List, Tuple
-
+from typing import Union, List, Tuple, Iterable
 
 
 def _download(
@@ -67,11 +66,12 @@ class FolderImageReader:
             self,
             input_name: str,
             folder: Union[str, os.PathLike[str]],
-            imgsz: int,
+            imgsz: Union[int, Tuple[int, int], List[int]],
             limit: int,
             shuffle: bool=True
     ):
-        self.input_name = input_name; self.imgsz = imgsz
+        self.input_name = input_name
+        self.imgsz = imgsz if isinstance(imgsz, Iterable) else (imgsz, imgsz)
         exts = (".jpg",".jpeg",".png",".bmp",".webp",".tif",".tiff")
         files = []
         for dirpath, _, filenames in os.walk(folder):
@@ -87,7 +87,7 @@ class FolderImageReader:
         path = self.files[self._idx]; self._idx += 1
         import numpy as np
         from PIL import Image
-        img = Image.open(path).convert("RGB").resize((self.imgsz, self.imgsz))
+        img = Image.open(path).convert("RGB").resize(self.imgsz)
         arr = (np.asarray(img, dtype=np.float32) / 255.0).transpose(2,0,1)[None, ...]
         return {self.input_name: arr}
 
@@ -96,7 +96,8 @@ class FolderImageReader:
 def imagenet_static_qdq_quantization(
         onnx_in: Union[str, os.PathLike[str]],
         onnx_out: Union[str, os.PathLike[str]],
-        imgsz: int, limit: int
+        imgsz: Union[int, Tuple[int, int], List[int]],
+        limit: int = 256
 ):
     cache_dir = os.path.join(os.path.dirname(onnx_out), 'auto_calib')
     prepare_auto_calib(cache_dir)
