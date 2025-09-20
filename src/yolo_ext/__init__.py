@@ -1,1 +1,2 @@
-from truncate_classes import yolo_model_truncate_classes
+from .truncate_classes import yolo_model_truncate_classes
+from .static_qdq_quantization import imagenet_static_qdq_quantization
