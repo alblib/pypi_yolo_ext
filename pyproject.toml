@@ -1,0 +1,22 @@
+[project]
+name = "yolo_ext"
+version = "0.0.1"
+authors = [
+  { name="Woohyun Rim", email="rim.woohyun@google.com" },
+]
+description = "Ultralytics Extension"
+readme = "README.md"
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+license = "MIT"
+license-files = ["LICEN[CS]E*"]
+dependencies = [
+    "ultralytics>=8.0.0"
+]
+
+[project.urls]
+Homepage = "https://github.com/alblib/pypi_yolo_ext"
+Issues = "https://github.com/alblib/pypi_yolo_ext/issues"
