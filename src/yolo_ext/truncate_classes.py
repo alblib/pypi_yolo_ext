@@ -3,7 +3,8 @@ from typing import Union, Iterable
 from ultralytics import YOLO
 import numpy as np
 
-def yolo_model_slice_class(
+
+def yolo_model_truncate_classes(
         model: Union[YOLO, nn.Module],
         class_ids: Union[Union[int, str], Iterable[Union[int, str]]]
 ) -> Union[YOLO, nn.Module]:

@@ -1,0 +1,1 @@
+from truncate_classes import yolo_model_truncate_classes
