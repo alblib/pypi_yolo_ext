@@ -93,7 +93,7 @@ class FolderImageReader:
 
 
 
-def imagenet_static_qdq_quantization(
+def imagenet_static_qdq_quantization_onnx(
         onnx_in: Union[str, os.PathLike[str]],
         onnx_out: Union[str, os.PathLike[str]],
         imgsz: Union[int, Tuple[int, int], List[int]],
