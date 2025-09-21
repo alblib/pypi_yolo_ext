@@ -42,6 +42,9 @@ def yolo_model_truncate_classes(
     last_layer.no = 64 + len(class_ids)
     model.model.model[-1] = last_layer
     model.model.nc = len(class_ids)
-    model.model.names = {class_id: model.model.names[class_id] for class_id in class_ids}
+    model.model.names = {
+        order: model.model.names[class_id]
+        for order, class_id in enumerate(class_ids)
+    }
 
     return model
