@@ -1,5 +1,5 @@
 import unittest, os
-from src.yolo_ext import yolo_model_truncate_classes, imagenet_static_qdq_quantization_onnx
+from src.yolo_ext import yolo_model_truncate_classes
 from ultralytics import YOLO
 
 

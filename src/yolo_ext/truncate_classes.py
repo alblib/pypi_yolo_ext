@@ -46,5 +46,8 @@ def yolo_model_truncate_classes(
         order: model.model.names[class_id]
         for order, class_id in enumerate(class_ids)
     }
-
+    # model.model.args['data'] = ''
+    # if model.model.args['model'].endswith('.pt'):
+    #     ptname, ptext = os.path.splitext(model.model.args['model'])
+    #     model.model.args['model'] = ptname + '_trunc' + ptext
     return model
